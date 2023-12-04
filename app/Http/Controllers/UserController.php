@@ -6,20 +6,26 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        return "ini adalah isi dari methodnya";
+        // parsing data
+        $dataMhs = [
+           ['id' => '1', 'nama' => 'Rahmi Rahmawati', 'nim' => '20110162', 'usia' => '20'],
+           ['id' => '2', 'nama' => 'Ayu Yuliana', 'nim' => '20110161', 'usia' => '20']
+        ];
+
+        if($request->query('kelas')){
+            $dataMhs = array_filter($dataMhs, function($kelas){
+                return $kelas['kelas'] == request()->kelas;
+            });
+        }
+
+        return view('user.index', compact('dataMhs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return "ini adalah halaman user method create";
+        return view('user.create');
     }
 
     /**
@@ -27,7 +33,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->route('user.index')->with('message', 'Data anda telah diinputkan');
     }
 
     /**
@@ -35,7 +41,18 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return "ini adalah halaman tampilan user $id";
+        $dataMhs = [
+            ['id' => '1', 'nama' => 'Rahmi Rahmawati', 'nim' => '20110162', 'usia' => '20'],
+            ['id' => '2', 'nama' => 'Ayu Yuliana', 'nim' => '20110161', 'usia' => '20'],
+         ];
+
+        if($id){
+            $dataMhs = array_filter($dataMhs, function($id){
+                return $id['id'] == request()->segment(count(request()->segments()));
+            });
+        }
+
+        return view('user.detail', compact('dataMhs'));
     }
 
     /**
@@ -43,7 +60,16 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return "ini adalah halaman tampilan edit user $id";
+        $dataMhs = [
+            ['id' => '1', 'nama' => 'Rahmi Rahmawati', 'nim' => '20110162', 'usia' => '20'],
+            ['id' => '2', 'nama' => 'Ayu Yuliana', 'nim' => '20110161', 'usia' => '20'],
+         ];
+
+         $dataMhs = array_filter($dataMhs, function($id){
+            return $id['id'] == request()->segment(count(request()->segments())-1);
+         });
+
+         return view('user.edit', compact('dataMhs'));
     }
 
     /**
@@ -51,7 +77,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return "ini adalah halaman update user dengan id: <b>".$id."</b>";
+        return redirect()->route('user.index')->with('message', 'Data anda telah di update');
     }
 
     /**
@@ -59,6 +85,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return "ini adalah halaman delete user dengan id: <b>".$id."</b>";
+        return redirect()->route('user.index')->with('message', 'Data anda telah dihapus');
     }
 }

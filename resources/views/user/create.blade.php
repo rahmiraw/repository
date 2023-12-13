@@ -25,13 +25,13 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                             <strong>Id:</strong>
-                            <input type="text" name="id" class="form-control" placeholder="Nama">
+                            <input type="number" name="id" class="form-control" placeholder="Id">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Nama:</strong>
-                                <input type="number" class="form-control" name="nama" placeholder="Id">
+                                <input type="text" class="form-control" name="nama" placeholder="Nama">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">

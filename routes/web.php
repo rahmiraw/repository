@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RepositoryController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +25,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('user', UserController::class);
-
-// Route::get('/user/caridata', [UserController::class, 'cariData'])->name('user.caridata');
+Route::resource('repository', RepositoryController::class);

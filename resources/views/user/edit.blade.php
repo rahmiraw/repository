@@ -4,7 +4,7 @@
     <div class="col-lg-10 mx-auto">
         <div class="card mt-5">
             <div class="card-header text-center">
-                <h2>Data Mahasiswa</h2>
+                <h2>Edit Mahasiswa</h2>
             </div>
             <div class="card-body">
                 @if ($errors->any())
@@ -27,25 +27,25 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                             <strong>Id:</strong>
-                            <input type="text" name="id" class="form-control" placeholder="Nama">
+                            <input type="number" value="{{ $mhs['id'] }}" name="id" class="form-control" placeholder="Id">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Nama:</strong>
-                                <input type="number" class="form-control" name="nama" placeholder="Id">
+                                <input type="text" value="{{ $mhs['nama'] }}" name="nama" class="form-control" placeholder="Nama">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>NIM:</strong>
-                                <input type="number" class="form-control" name="nim" placeholder="NIM">
+                                <input type="number" value="{{ $mhs['nim'] }}" class="form-control" name="nim" placeholder="NIM">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Usia:</strong>
-                                <input type="number" class="form-control" name="usia" placeholder="Usia">
+                                <input type="number" value="{{ $mhs['usia'] }}" class="form-control" name="usia" placeholder="Usia">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

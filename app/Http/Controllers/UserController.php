@@ -62,7 +62,7 @@ class UserController extends Controller
     {
         $dataMhs = [
             ['id' => '1', 'nama' => 'Rahmi Rahmawati', 'nim' => '20110162', 'usia' => '20'],
-            ['id' => '2', 'nama' => 'Ayu Yuliana', 'nim' => '20110161', 'usia' => '20'],
+            ['id' => '2', 'nama' => 'Ayu Yuliana', 'nim' => '20110161', 'usia' => '20']
          ];
 
          $dataMhs = array_filter($dataMhs, function($id){

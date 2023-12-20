@@ -2,8 +2,17 @@
 @section('content')
 
 <div class="container">
-    <div class="col-lg-12 mx-auto">
-        <div class="card mt-8">
+    @if(session('success'))
+    <div class="alert alert-success">
+        <div>{{ session('success') }}</div>
+    </div>
+    @endif
+    <div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <h4 class="card-title"> Data Repository</h4>
+            <a href="{{ route('repository.create') }}" class="btn btn-dark">Create</a>
+        </div>
+        <div class="card-body">
             <table class="table">
                 <thead>
                     <tr>
@@ -23,9 +32,13 @@
                         <td>{{ $repository->author }}</td>
                         <td>{{ $repository->year }}</td>
                         <td>{{ $repository->description }}</td>
-                        <td>
-                            <a href="#" class="btn btn-success">Edit</a>
-                            <a href="#" class="btn btn-danger">Delete</a>
+                        <td class="text-center" width="160px">
+                            <a href="{{ route('repository.edit', $repository->id) }}" class="btn btn-success">Edit</a>
+                            <form action="{{ route('repository.destroy', $repository->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

@@ -25,7 +25,7 @@ class RepositoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('repository.create');
     }
 
     /**
@@ -33,7 +33,15 @@ class RepositoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "author" => ['required'],
+            "title" => ['required'],
+            "year" => ['required', 'numeric', 'min:2021', 'max:2025'],
+            "description" => ['required'],
+        ]);
+
+        $new = Repository::create($request->all());
+        return redirect()->route('repository.index')->with('success', $new->title . " berhasil ditambahkan");
     }
 
     /**
@@ -49,7 +57,8 @@ class RepositoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $repository = Repository::find($id);
+        return view('repository.edit', compact('repository'));
     }
 
     /**
@@ -57,7 +66,22 @@ class RepositoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            "author" => ['required'],
+            "title" => ['required'],
+            "year" => ['required', 'numeric', 'min:2021', 'max:2025'],
+            "description" => ['required'],
+        ]);
+
+        $repository = Repository::find($id);
+
+        $repository->title = $request->input('title');
+        $repository->author = $request->input('author');
+        $repository->year = $request->input('year');
+        $repository->description = $request->input('description');
+        $repository->save();
+
+        return redirect()->route('repository.index')->with('success', 'Data repository berhasil diperbarui.');
     }
 
     /**
@@ -65,6 +89,13 @@ class RepositoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $repository = Repository::find($id);
+
+        if ($repository) {
+            $repository->delete();
+            return redirect()->route('repository.index')->with('success', 'Data repository berhasil dihapus.');
+        } else {
+            return redirect()->route('repository.index')->with('error', 'Data repository tidak ditemukan.');
+        }
     }
 }

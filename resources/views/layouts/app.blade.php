@@ -29,10 +29,18 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    @Auth
                     <ul class="navbar-nav me-auto">
-
+                        @if (Auth::user()->role_id == 1)
+                        <li class="nav-item">
+                            <a href="{{ route('user.index') }}" class="nav-link"> Data User </a>
+                        </li>
+                        @endif
+                        <li class="nav-item">
+                            <a href="{{ route('repository.index') }}" class="nav-link"> Repository </a>
+                        </li>
                     </ul>
-
+                    @endAuth
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->

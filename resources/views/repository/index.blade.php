@@ -21,7 +21,9 @@
                         <th>Author</th>
                         <th>Year</th>
                         <th>Description</th>
+                        @if (Auth::user()->role_id == 1)
                         <th>Option</th>
+                        @endif
                     </tr>
                 </thead>
             <tbody>
@@ -32,6 +34,7 @@
                         <td>{{ $repository->author }}</td>
                         <td>{{ $repository->year }}</td>
                         <td>{{ $repository->description }}</td>
+                        @if (Auth::user()->role_id == 1)
                         <td class="text-center" width="160px">
                             <a href="{{ route('repository.edit', $repository->id) }}" class="btn btn-success">Edit</a>
                             <form action="{{ route('repository.destroy', $repository->id) }}" method="POST">
@@ -40,6 +43,7 @@
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>

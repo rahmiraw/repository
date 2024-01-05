@@ -39,6 +39,9 @@
                         <li class="nav-item">
                             <a href="{{ route('repository.index') }}" class="nav-link"> Repository </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('myrepo') }}" class="nav-link">Repository Saya</a>
+                        </li>
                     </ul>
                     @endAuth
                     <!-- Right Side Of Navbar -->
